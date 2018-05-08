@@ -1,108 +1,114 @@
 <!doctype html>
 <html>
-<head>
-<meta charset="utf-8">
-<title>無標題文件</title>
-<style type="text/css">
 
-#progressBar {
-	background-color:#FFF;
-	height:20px;
-	width: 640px;
-	border: 1px solid #999;
-}
-#play{
-	background-color: #F00;
-	display: inline-block;
-	height: 20px;
-}
-</style>
+<head>
+	<meta charset="utf-8">
+	<title>無標題文件</title>
+	<style type="text/css">
+		#progressBar {
+			background-color: #FFF;
+			height: 20px;
+			width: 640px;
+			border: 1px solid #999;
+		}
+
+		#play {
+			background-color: #F00;
+			display: inline-block;
+			height: 20px;
+		}
+	</style>
 </head>
 
 <body>
 
-<video src="videos/student.mp4" width="640" height="486" controls id="myVideo"autoplay></video>
+	<video src="videos/student.mp4" width="640" height="486" controls id="myVideo" autoplay></video>
 
-<div id="progressBar"><span id="played"></span></div>
+	<div id="progressBar">
+		<span id="played"></span>
+	</div>
 
-<div id="videocontrols">
-<button id="playpause" onClick="togglePlay()">play</button>
-<button id="stop" onClick="stopvideo()">Hold On</button>
-<button id="volumeUp" onClick="changeVolume('+')">+</button>
-<button id="volumeDown" onClick="changeVolume('-')">-</button>
-<button id="mute" onClick="toggleMute()">B嘴</button><br>
-<button id="replay" onClick="videoreplay()">繼續DUMP</button>
-
-
-</div>
-
-
-<div id="gogo">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/JrT-YZr8O0s?list=PLqRpG5b5zZBBF4iWDo3KHxYrISIf1liWyautoplay=1" frameborder="0" allowfullscreen></iframe>
+	<div id="videocontrols">
+		<button id="playpause" onClick="togglePlay()">play</button>
+		<button id="stop" onClick="stopvideo()">Hold On</button>
+		<button id="volumeUp" onClick="changeVolume('+')">+</button>
+		<button id="volumeDown" onClick="changeVolume('-')">-</button>
+		<button id="mute" onClick="toggleMute()">B嘴</button>
+		<br>
+		<button id="replay" onClick="videoreplay()">繼續DUMP</button>
 
 
-</div>
+	</div>
 
 
-<script>
-
-var video = document.getElementById("myVideo");
-video.controls = false;
-
-var pbutton = document.getElementById("playpause");
-pbutton.innerHTML = "pause";
-
-function changeVolume(dir){
-	var volume = video.volume;
-	video.muted = false;
-	if(dir=="+"){
-		if (volume > 0.9) video.volume=1;
-		else video.volume += 0.1;
-	}
-	if (dir=="-"){
-		if (volume <=0.1) video.volume=0;
-		else video.volume-= 0.1;
-	}
-}
+	<div id="gogo">
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/JrT-YZr8O0s?list=PLqRpG5b5zZBBF4iWDo3KHxYrISIf1liWyautoplay=1"
+		 frameborder="0" allowfullscreen></iframe>
 
 
+	</div>
 
 
-function stopvideo(){
-	video.pause();
-	video.currentTime=0;	
-	pbutton.innerHTML="play"
-}
+	<script>
 
-function togglePlay(){
-	if(video.paused || video.ended) //在目前暫停的狀態
-	{
-		if(video.ended) video.currentTime=0;
-		video.play();
-		pbutton.innerHTML = "Pause";
-	}else{
-		video.pause();
-		pbutton.innerHTML="play";
-	}
-}
+		var video = document.getElementById("myVideo");
+		video.controls = false;
+
+		var pbutton = document.getElementById("playpause");
+		pbutton.innerHTML = "pause";
+
+		function changeVolume(dir) {
+			var volume = video.volume;
+			video.muted = false;
+			if (dir == "+") {
+				if (volume > 0.9) video.volume = 1;
+				else video.volume += 0.1;
+			}
+			if (dir == "-") {
+				if (volume <= 0.1) video.volume = 0;
+				else video.volume -= 0.1;
+			}
+		}
 
 
-function toggleMute(){
-	var m = document.getElementById("mute");
-	if (video.muted){
-		video.muted=false;
-		m.innerHTML="Mute";
-	}else{
-		video.muted=true;
-		m.innerHTML="Unmute";
-	}
-}
 
-function videoreplay(){
-	video.play();
-}
 
-</script>
+		function stopvideo() {
+			video.pause();
+			video.currentTime = 0;
+			pbutton.innerHTML = "play"
+		}
+
+		function togglePlay() {
+			if (video.paused || video.ended) //在目前暫停的狀態
+			{
+				if (video.ended) video.currentTime = 0;
+				video.play();
+				pbutton.innerHTML = "Pause";
+			} else {
+				video.pause();
+				pbutton.innerHTML = "play";
+			}
+		}
+
+
+		function toggleMute() {
+			var m = document.getElementById("mute");
+			if (video.muted) {
+				video.muted = false;
+				m.innerHTML = "Mute";
+			} else {
+				video.muted = true;
+				m.innerHTML = "Unmute";
+			}
+		}
+
+		function videoreplay() {
+			video.play();
+		}
+
+	</script>
 
 </body>
+
 </html>
